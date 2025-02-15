@@ -1,4 +1,4 @@
-# Custom DropDown Button
+# Basic DropDown Button
 
 A highly customizable drop-down button widget for Flutter. This package offers two variants—one streamlined for ease-of-use and one with full customization—so you can integrate a stylish, adaptive drop-down button into your app with minimal hassle or with extensive control over every detail.
 
