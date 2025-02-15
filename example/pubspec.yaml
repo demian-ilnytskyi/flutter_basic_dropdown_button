@@ -1,5 +1,5 @@
 name: example
-description: "Example for custom drop down button widget"
+description: "Example for basic drop down button widget"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  custom_drop_down_button:
+  basic_dropdown_button:
     path: ../
 
   # The following adds the Cupertino Icons font to your application.

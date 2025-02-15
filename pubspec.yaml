@@ -1,5 +1,5 @@
-name: customizable_dropdown_button
-description: "Drop Down Button With Choose menu position"
+name: basic_dropdown_button
+description: "A highly customizable dropdown button with configurable menu positioning"
 version: 1.0.0
 homepage: https://github.com/DemienIlnutskiy/flutter_custom_drop_down_button
 
