@@ -1,6 +1,6 @@
 name: custom_drop_down_button
 description: "Drop Down Button With Choose menu position"
-version: 1.9.9
+version: 1.0.0
 homepage: https://github.com/DemienIlnutskiy/flutter_custom_drop_down_button
 
 environment:
