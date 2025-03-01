@@ -1,6 +1,24 @@
 # Basic DropDown Button
 
+<p align="center">
+  <a href="https://pub.dev/packages/flutter_basic_dropdown_button "><img src="https://img.shields.io/pub/v/flutter_basic_dropdown_button " alt="pub"></a>
+  <a href="https://app.codecov.io/github/DemienIlnutskiy/flutter_flutter_basic_dropdown_button "><img src="https://img.shields.io/codecov/c/github/DemienIlnutskiy/flutter_flutter_basic_dropdown_button " alt="pub"></a>
+  <a href="https://github.com/DemienIlnutskiy/flutter_flutter_basic_dropdown_button /actions/workflows/generate_code_coverate.yaml"><img src="https://img.shields.io/github/actions/workflow/status/DemienIlnutskiy/flutter_flutter_basic_dropdown_button /generate_code_coverate.yaml?event=push&branch=main&label=tests&logo=github" alt="tests"></a>
+  <a href="https://github.com/DemienIlnutskiy/flutter_flutter_basic_dropdown_button /actions/workflows/ci.yaml">
+    <img src="https://img.shields.io/github/actions/workflow/status/DemienIlnutskiy/flutter_flutter_basic_dropdown_button /ci.yaml?event=pull_request&label=Code%20Analysis%20%26%20Formatting&logo=github" 
+        alt="Code Analysis & Formatting">
+  </a>
+</p>
+
 A highly customizable drop-down button widget for Flutter. This package offers two variants—one streamlined for ease-of-use and one with full customization—so you can integrate a stylish, adaptive drop-down button into your app with minimal hassle or with extensive control over every detail.
+
+---
+
+## Preview
+
+Below is a preview of the Custom DropDown Button in action:
+
+![Preview](preview.png)
 
 ---
 
@@ -52,14 +70,6 @@ A highly customizable drop-down button widget for Flutter. This package offers t
 - **Learning Resource:**  
   - `CustomDropDownButton` can serve as a practical example of how to build and customize your own widget.
   - You can study its structure and even extend it using the more flexible `BasicDropDownButton` as a foundation.
-
----
-
-## Preview
-
-Below is a preview of the Custom DropDown Button in action:
-
-![Preview](preview.png)
 
 ---
 
