@@ -1,0 +1,19 @@
+name: Generate Code Coverage
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "lib/**"
+      - "test/**"
+    branches:
+      - main
+
+concurrency:
+  group: generate-code-coverage
+  cancel-in-progress: true
+
+jobs:
+  build_tests:
+    uses: DemienIlnutskiy/flutter_workflows/.github/workflows/push_code_coverage.yml@main
+      

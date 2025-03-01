@@ -1,0 +1,17 @@
+name: CI - Build and Test
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "lib/**"
+      - "test/**"
+    branches: [main]
+
+concurrency:
+  group: ci-$
+  cancel-in-progress: true
+
+jobs:
+  build_tests:
+    uses: DemienIlnutskiy/flutter_workflows/.github/workflows/ci_build_and_test.yml@main
