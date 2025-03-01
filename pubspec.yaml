@@ -5,13 +5,15 @@ homepage: https://github.com/DemienIlnutskiy/flutter_custom_drop_down_button
 
 environment:
   sdk: '>=2.12.0 <4.0.0'
-  flutter: ">=1.17.0"
+  flutter: ">=3.16.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: any
 
 flutter:
