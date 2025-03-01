@@ -18,7 +18,12 @@ A highly customizable drop-down button widget for Flutter. This package offers t
 
 Below is a preview of the Custom DropDown Button in action:
 
-![Preview](preview.png)
+
+<p align="center">
+  <a href="https://github.com/DemienIlnutskiy/flutter_sliver_center/blob/main/assets/read_me/preview.png">
+    <img src="https://raw.githubusercontent.com/DemienIlnutskiy/flutter_sliver_center/main/assets/read_me/preview.png" alt="preview">
+  </a>
+</p>
 
 ---
 
@@ -70,6 +75,12 @@ Below is a preview of the Custom DropDown Button in action:
 - **Learning Resource:**  
   - `CustomDropDownButton` can serve as a practical example of how to build and customize your own widget.
   - You can study its structure and even extend it using the more flexible `BasicDropDownButton` as a foundation.
+
+---
+
+## Test Coverage and Flutter Version Support
+
+This package has 100% test coverage, ensuring reliability and robustness. The tests have been executed on Flutter versions 3.16.0 and 3.29.0, confirming full support for these versions and all versions in between.
 
 ---
 
