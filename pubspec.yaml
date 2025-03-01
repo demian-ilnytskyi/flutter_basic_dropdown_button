@@ -1,6 +1,6 @@
 name: basic_dropdown_button
 description: "A highly customizable dropdown button with configurable menu positioning"
-version: 1.0.0+1
+version: 1.1.0
 homepage: https://github.com/DemienIlnutskiy/flutter_custom_drop_down_button
 
 environment:
