@@ -19,12 +19,12 @@ class BasicDropDownButton extends StatefulWidget {
     required this.buttonCloseMenuIcon,
     required this.buttonOpenMenuIcon,
     Key? key,
-    this.itemSpacing = 8,
+    this.itemSpacing = 0,
     this.buttonIconColor = Colors.black,
     this.buttonIconFirst = true,
     this.menuItemsSpacing = 0,
     this.menuClipBehavior = Clip.hardEdge,
-    this.menuItemsPadding,
+    this.menuPadding,
     this.buttonChild,
     this.menuBorderRadius,
     this.buttonTextStyle,
@@ -75,7 +75,7 @@ class BasicDropDownButton extends StatefulWidget {
   final bool showIndicatorIcon;
 
   /// Padding for the menu items inside the drop-down.
-  final EdgeInsets? menuItemsPadding;
+  final EdgeInsets? menuPadding;
 
   /// Background color of the drop-down menu.
   final Color menuBackgroundColor;
@@ -198,39 +198,44 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
       child: Align(
         alignment: positionValue.getContentPosition,
         child: Padding(
+          key: widget.menuKey,
           padding: EdgeInsets.only(
             top: widget.menuVerticalSpacing,
             bottom: widget.menuVerticalSpacing,
           ),
           child: TapRegion(
-            key: widget.menuKey,
+            key: _menuKey,
             onTapOutside: (event) => showHideMenu(),
             child: widget.menuList ??
                 Container(
-                  key: _menuKey,
                   decoration: BoxDecoration(
                     color: widget.menuBackgroundColor,
                     borderRadius: widget.menuBorderRadius,
                   ),
                   clipBehavior: widget.menuClipBehavior,
                   child: Padding(
-                    padding: widget.menuItemsPadding ?? EdgeInsets.zero,
+                    padding: widget.menuPadding ?? EdgeInsets.zero,
                     child: IntrinsicWidth(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: List.generate(
-                          items!.length * 2,
-                          (index) {
-                            if (index.isOdd) {
-                              return SizedBox(
-                                height: widget.menuItemsSpacing,
-                              );
-                            } else {
-                              return items.elementAt(index ~/ 2);
-                            }
-                          },
-                        ),
+                        children: widget.menuItemsSpacing > 0
+                            ? List.generate(
+                                items!.length * 2,
+                                (index) {
+                                  if (index.isOdd) {
+                                    return SizedBox(
+                                      height: widget.menuItemsSpacing,
+                                    );
+                                  } else {
+                                    return items.elementAt(index ~/ 2);
+                                  }
+                                },
+                              )
+                            : List.generate(
+                                items!.length,
+                                items.elementAt,
+                              ),
                       ),
                     ),
                   ),

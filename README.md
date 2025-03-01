@@ -16,12 +16,27 @@ A highly customizable drop-down button widget for Flutter. This package offers t
 
 ## Preview
 
-Below is a preview of the Custom DropDown Button in action:
-
+<p align="center">
+  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/lib/custom_dropdown_button.dart">
+   Preview
+  </a>
+</p>
 
 <p align="center">
   <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/assets/read_me/preview.png">
     <img src="https://raw.githubusercontent.com/DemienIlnutskiy/flutter_basic_dropdown_button/main/assets/read_me/preview.png" alt="preview">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/lib/basic_dropwon_button_widget.dart">
+   Position Adaptive
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/assets/read_me/adaptive_menu_position.gif">
+    <img src="https://raw.githubusercontent.com/DemienIlnutskiy/flutter_basic_dropdown_button/main/assets/read_me/adaptive_menu_position.gif" alt="position adaptive">
   </a>
 </p>
 

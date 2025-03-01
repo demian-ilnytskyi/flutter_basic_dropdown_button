@@ -28,10 +28,11 @@ class CustomDropDownButton<T> extends StatelessWidget {
     this.menuBorderRadius,
     this.buttonTextStyle,
     this.customButton,
-    this.itemSpacing = 8,
+    this.itemSpacing = 0,
     this.selectedValue,
     this.buttonIconColor,
     this.menuKey,
+    this.menuItemsSpacing = 0,
   })  : assert(
           !(buttonText == null && customButton == null),
           'Either provide a [buttonText] or a custom [buttonChild].',
@@ -92,6 +93,9 @@ class CustomDropDownButton<T> extends StatelessWidget {
 
   final Key? menuKey;
 
+  /// Spacing between menu items.
+  final double menuItemsSpacing;
+
   @override
   Widget build(BuildContext context) {
     return BasicDropDownButton(
@@ -139,7 +143,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
       showIndicatorIcon: showIndicatorIcon,
       position: position,
       buttonIconFirst: buttonIconFirst,
-      menuItemsPadding: menuPadding,
+      menuPadding: menuPadding,
       buttonCloseMenuIcon: buttonCloseMenuIcon ??
           Icon(
             Icons.arrow_drop_up,
@@ -154,7 +158,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
       buttonTextStyle: buttonTextStyle,
       customButton: customButton,
       itemSpacing: itemSpacing,
-      menuKey: menuKey,
+      menuKey: menuKey, menuItemsSpacing: menuItemsSpacing,
     );
   }
 }

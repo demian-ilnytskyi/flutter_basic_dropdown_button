@@ -170,6 +170,7 @@ void main() {
             buttonStyle: const ButtonStyle(),
             buttonText: 'test',
             buttonIconFirst: false,
+            menuItemsSpacing: 8,
             menuItems: List.generate(
               3,
               (index) => CustomDropDownButtonItem(
