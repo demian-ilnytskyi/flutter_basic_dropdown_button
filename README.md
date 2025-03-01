@@ -1,11 +1,11 @@
 # Basic DropDown Button
 
 <p align="center">
-  <a href="https://pub.dev/packages/flutter_basic_dropdown_button "><img src="https://img.shields.io/pub/v/flutter_basic_dropdown_button " alt="pub"></a>
-  <a href="https://app.codecov.io/github/DemienIlnutskiy/flutter_basic_dropdown_button "><img src="https://img.shields.io/codecov/c/github/DemienIlnutskiy/flutter_basic_dropdown_button " alt="pub"></a>
-  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button /actions/workflows/generate_code_coverate.yaml"><img src="https://img.shields.io/github/actions/workflow/status/DemienIlnutskiy/flutter_basic_dropdown_button /generate_code_coverate.yaml?event=push&branch=main&label=tests&logo=github" alt="tests"></a>
-  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button /actions/workflows/ci.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/DemienIlnutskiy/flutter_basic_dropdown_button /ci.yaml?event=pull_request&label=Code%20Analysis%20%26%20Formatting&logo=github" 
+  <a href="https://pub.dev/packages/basic_dropdown_button "><img src="https://img.shields.io/pub/v/basic_dropdown_button " alt="pub"></a>
+  <a href="https://app.codecov.io/github/DemienIlnutskiy/flutter_basic_dropdown_button"><img src="https://img.shields.io/codecov/c/github/DemienIlnutskiy/flutter_basic_dropdown_button" alt="pub"></a>
+  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/actions/workflows/generate_code_coverate.yaml"><img src="https://img.shields.io/github/actions/workflow/status/DemienIlnutskiy/flutter_basic_dropdown_button/generate_code_coverate.yaml?event=push&branch=main&label=tests&logo=github" alt="tests"></a>
+  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/actions/workflows/ci.yaml">
+    <img src="https://img.shields.io/github/actions/workflow/status/DemienIlnutskiy/flutter_basic_dropdown_button/ci.yaml?event=pull_request&label=Code%20Analysis%20%26%20Formatting&logo=github" 
         alt="Code Analysis & Formatting">
   </a>
 </p>
