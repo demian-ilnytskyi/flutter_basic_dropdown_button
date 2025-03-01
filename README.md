@@ -20,8 +20,8 @@ Below is a preview of the Custom DropDown Button in action:
 
 
 <p align="center">
-  <a href="https://github.com/DemienIlnutskiy/flutter_sliver_center/blob/main/assets/read_me/preview.png">
-    <img src="https://raw.githubusercontent.com/DemienIlnutskiy/flutter_sliver_center/main/assets/read_me/preview.png" alt="preview">
+  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/assets/read_me/preview.png">
+    <img src="https://raw.githubusercontent.com/DemienIlnutskiy/flutter_basic_dropdown_button/main/assets/read_me/preview.png" alt="preview">
   </a>
 </p>
 
