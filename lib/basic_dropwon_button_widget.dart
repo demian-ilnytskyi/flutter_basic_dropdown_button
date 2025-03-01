@@ -227,7 +227,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
                                 height: widget.menuItemsSpacing,
                               );
                             } else {
-                              return items.elementAt((index / 2).toInt());
+                              return items.elementAt(index ~/ 2);
                             }
                           },
                         ),
