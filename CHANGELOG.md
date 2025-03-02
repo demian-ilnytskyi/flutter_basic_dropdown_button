@@ -6,3 +6,5 @@ Small Package ReadMe Rename
 Added tests and fix flutter support version
 ## 1.1.0+1
 Added buttonIconSpace as parameter
+## 1.1.0+1
+Fixed Assert
