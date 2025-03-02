@@ -34,7 +34,7 @@ class BasicDropDownButton extends StatefulWidget {
     this.menuKey,
   })  : assert(
           !(buttonChild == null && buttonText == null && customButton == null),
-          'Either provide a [buttonText] or a custom [buttonChild].',
+          'Either provide a [buttonText] or a custom [customButton] or a custom [buttonChild].',
         ),
         assert(
           !(menuItems == null && menuList == null),
