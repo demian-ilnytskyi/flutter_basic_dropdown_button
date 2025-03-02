@@ -220,7 +220,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: widget.menuItemsSpacing > 0
                             ? List.generate(
-                                items!.length * 2,
+                                items!.length * 2 - 1,
                                 (index) {
                                   if (index.isOdd) {
                                     return SizedBox(

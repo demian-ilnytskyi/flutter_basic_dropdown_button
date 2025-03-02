@@ -10,3 +10,5 @@ Added buttonIconSpace as parameter
 Fixed Assert
 ## 1.1.0+3
 Added margin for CustomDropDownButtonItem
+## 1.1.0+4
+Fixed menuItemsSpacing. Now not add spacing for last item
