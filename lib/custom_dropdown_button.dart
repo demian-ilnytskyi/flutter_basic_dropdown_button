@@ -33,6 +33,8 @@ class CustomDropDownButton<T> extends StatelessWidget {
     this.buttonIconColor,
     this.menuKey,
     this.menuItemsSpacing = 0,
+    this.buttonIconSpace = 0,
+    this.buttonChild,
   })  : assert(
           !(buttonText == null && customButton == null),
           'Either provide a [buttonText] or a custom [buttonChild].',
@@ -96,6 +98,10 @@ class CustomDropDownButton<T> extends StatelessWidget {
   /// Spacing between menu items.
   final double menuItemsSpacing;
 
+  final double buttonIconSpace;
+
+  final Widget? buttonChild;
+
   @override
   Widget build(BuildContext context) {
     return BasicDropDownButton(
@@ -141,6 +147,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
       menuVerticalSpacing: menuVerticalSpacing,
       menuBackgroundColor: menuBackgroundColor,
       showIndicatorIcon: showIndicatorIcon,
+      buttonIconSpace: buttonIconSpace,
       position: position,
       buttonIconFirst: buttonIconFirst,
       menuPadding: menuPadding,
@@ -158,7 +165,9 @@ class CustomDropDownButton<T> extends StatelessWidget {
       buttonTextStyle: buttonTextStyle,
       customButton: customButton,
       itemSpacing: itemSpacing,
-      menuKey: menuKey, menuItemsSpacing: menuItemsSpacing,
+      menuKey: menuKey,
+      menuItemsSpacing: menuItemsSpacing,
+      buttonChild: buttonChild,
     );
   }
 }
