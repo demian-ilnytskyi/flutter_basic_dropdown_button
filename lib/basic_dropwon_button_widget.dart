@@ -18,6 +18,7 @@ class BasicDropDownButton extends StatefulWidget {
     required this.position,
     required this.buttonCloseMenuIcon,
     required this.buttonOpenMenuIcon,
+    this.buttonIconSpace = 0,
     Key? key,
     this.itemSpacing = 0,
     this.buttonIconColor = Colors.black,
@@ -103,6 +104,8 @@ class BasicDropDownButton extends StatefulWidget {
 
   /// Alignment for the icon within the main button.
   final bool buttonIconFirst;
+
+  final double buttonIconSpace;
 
   @override
   State<BasicDropDownButton> createState() => _BasicDropDownButtonState();
@@ -287,10 +290,12 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
         children: widget.buttonIconFirst
             ? [
                 icon,
+                SizedBox(width: widget.buttonIconSpace),
                 Flexible(child: textWidget),
               ]
             : [
                 Flexible(child: textWidget),
+                SizedBox(width: widget.buttonIconSpace),
                 icon,
               ],
       );
