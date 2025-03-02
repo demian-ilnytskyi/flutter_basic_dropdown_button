@@ -20,7 +20,6 @@ class BasicDropDownButton extends StatefulWidget {
     required this.buttonOpenMenuIcon,
     this.buttonIconSpace = 0,
     Key? key,
-    this.itemSpacing = 0,
     this.buttonIconColor = Colors.black,
     this.buttonIconFirst = true,
     this.menuItemsSpacing = 0,
@@ -83,9 +82,6 @@ class BasicDropDownButton extends StatefulWidget {
 
   /// Custom builder for the main button.
   final Widget Function(VoidCallback? showHideMenu)? customButton;
-
-  /// Spacing between individual menu items in the drop-down.
-  final double itemSpacing;
 
   /// Custom widget for the entire menu list. If provided, overrides
   /// [menuItems].

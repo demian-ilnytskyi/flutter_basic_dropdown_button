@@ -28,7 +28,6 @@ class CustomDropDownButton<T> extends StatelessWidget {
     this.menuBorderRadius,
     this.buttonTextStyle,
     this.customButton,
-    this.itemSpacing = 0,
     this.selectedValue,
     this.buttonIconColor,
     this.menuKey,
@@ -84,9 +83,6 @@ class CustomDropDownButton<T> extends StatelessWidget {
   /// [buttonText].
   final Widget Function(VoidCallback?)? customButton;
 
-  /// Spacing between individual menu items.
-  final double itemSpacing;
-
   /// The currently selected value.
   final T? selectedValue;
 
@@ -111,7 +107,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
       menuItems: (hideMenu) => List.generate(menuItems.length, (index) {
         final item = menuItems.elementAt(index);
         final isSelected = selectedValue != null && selectedValue == item.value;
-        return TextButton(
+        final button = TextButton(
           key: item.key,
           style: item.buttonStyle,
           onPressed: item.onPressed == null || isSelected
@@ -143,6 +139,14 @@ class CustomDropDownButton<T> extends StatelessWidget {
                   style: item.textStyle,
                 ),
         );
+        if (item.margin != null) {
+          return Padding(
+            padding: item.margin!,
+            child: button,
+          );
+        } else {
+          return button;
+        }
       }),
       menuVerticalSpacing: menuVerticalSpacing,
       menuBackgroundColor: menuBackgroundColor,
@@ -164,7 +168,6 @@ class CustomDropDownButton<T> extends StatelessWidget {
       menuBorderRadius: menuBorderRadius,
       buttonTextStyle: buttonTextStyle,
       customButton: customButton,
-      itemSpacing: itemSpacing,
       menuKey: menuKey,
       menuItemsSpacing: menuItemsSpacing,
       buttonChild: buttonChild,
@@ -188,6 +191,7 @@ class CustomDropDownButtonItem<T> {
     this.icon,
     this.textStyle,
     this.buttonStyle,
+    this.margin,
   });
 
   /// Text displayed for this menu item.
@@ -219,4 +223,6 @@ class CustomDropDownButtonItem<T> {
 
   /// Button style for the menu item.
   final ButtonStyle? buttonStyle;
+
+  final EdgeInsets? margin;
 }

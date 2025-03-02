@@ -6,5 +6,7 @@ Small Package ReadMe Rename
 Added tests and fix flutter support version
 ## 1.1.0+1
 Added buttonIconSpace as parameter
-## 1.1.0+1
+## 1.1.0+2
 Fixed Assert
+## 1.1.0+3
+Added margin for CustomDropDownButtonItem
