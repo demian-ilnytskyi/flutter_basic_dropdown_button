@@ -291,6 +291,9 @@ void main() {
                 text: 'Item value is ${index + 1}',
                 onPressed: () => value.value = index,
                 icon: const Icon(Icons.abc),
+                margin: EdgeInsets.all(
+                  8,
+                ),
               ),
             ),
             menuBorderRadius: BorderRadius.circular(
