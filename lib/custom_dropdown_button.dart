@@ -16,15 +16,13 @@ class CustomDropDownButton<T> extends StatelessWidget {
     required this.buttonStyle,
     required this.buttonText,
     required this.menuItems,
+    required this.buttonIcon,
     Key? key,
     this.menuVerticalSpacing = 8,
     this.menuBackgroundColor = Colors.grey,
-    this.showIndicatorIcon = true,
     this.position = DropDownButtonPosition.bottomCenter,
     this.buttonIconFirst = true,
     this.menuPadding,
-    this.buttonCloseMenuIcon,
-    this.buttonOpenMenuIcon,
     this.menuBorderRadius,
     this.buttonTextStyle,
     this.customButton,
@@ -36,7 +34,8 @@ class CustomDropDownButton<T> extends StatelessWidget {
     this.buttonChild,
   })  : assert(
           !(buttonText == null && customButton == null && buttonChild == null),
-          'Either provide a [buttonText] or a custom [customButton] or a custom [buttonChild].',
+          'Either provide a [buttonText] or a custom [customButton]'
+          ' or a custom [buttonChild].',
         ),
         super(key: key);
 
@@ -64,15 +63,6 @@ class CustomDropDownButton<T> extends StatelessWidget {
   /// Alignment for the icon within the main button.
   final bool buttonIconFirst;
 
-  /// Icon displayed when the menu is open.
-  final Widget? buttonCloseMenuIcon;
-
-  /// Icon displayed when the menu is closed.
-  final Widget? buttonOpenMenuIcon;
-
-  /// Determines whether to show the indicator icon on the main button.
-  final bool showIndicatorIcon;
-
   /// Padding for the menu items inside the drop-down.
   final EdgeInsets? menuPadding;
 
@@ -81,7 +71,10 @@ class CustomDropDownButton<T> extends StatelessWidget {
 
   /// A custom builder for the main button. If provided, it overrides
   /// [buttonText].
-  final Widget Function(VoidCallback?)? customButton;
+  final Widget Function({
+    required VoidCallback? showHideMenuEvent,
+    required bool showMenu,
+  })? customButton;
 
   /// The currently selected value.
   final T? selectedValue;
@@ -97,6 +90,9 @@ class CustomDropDownButton<T> extends StatelessWidget {
   final double buttonIconSpace;
 
   final Widget? buttonChild;
+
+  /// Determines whether to show the indicator icon on the main button.
+  final Widget Function({required bool showedMenu})? buttonIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -150,21 +146,11 @@ class CustomDropDownButton<T> extends StatelessWidget {
       }),
       menuVerticalSpacing: menuVerticalSpacing,
       menuBackgroundColor: menuBackgroundColor,
-      showIndicatorIcon: showIndicatorIcon,
       buttonIconSpace: buttonIconSpace,
       position: position,
       buttonIconFirst: buttonIconFirst,
       menuPadding: menuPadding,
-      buttonCloseMenuIcon: buttonCloseMenuIcon ??
-          Icon(
-            Icons.arrow_drop_up,
-            color: buttonIconColor,
-          ),
-      buttonOpenMenuIcon: buttonOpenMenuIcon ??
-          Icon(
-            Icons.arrow_drop_down,
-            color: buttonIconColor,
-          ),
+      buttonIcon: buttonIcon,
       menuBorderRadius: menuBorderRadius,
       buttonTextStyle: buttonTextStyle,
       customButton: customButton,

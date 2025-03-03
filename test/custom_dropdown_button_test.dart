@@ -57,6 +57,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? const Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : const Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -126,6 +133,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? const Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : const Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -184,6 +198,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? const Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : const Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -240,6 +261,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? const Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : const Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -291,7 +319,7 @@ void main() {
                 text: 'Item value is ${index + 1}',
                 onPressed: () => value.value = index,
                 icon: const Icon(Icons.abc),
-                margin: EdgeInsets.all(
+                margin: const EdgeInsets.all(
                   8,
                 ),
               ),
@@ -300,6 +328,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? const Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : const Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -356,6 +391,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? const Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : const Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
