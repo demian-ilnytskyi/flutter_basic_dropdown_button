@@ -14,10 +14,8 @@ class BasicDropDownButton extends StatefulWidget {
     required this.menuItems,
     required this.menuVerticalSpacing,
     required this.menuBackgroundColor,
-    required this.showIndicatorIcon,
+    required this.buttonIcon,
     required this.position,
-    required this.buttonCloseMenuIcon,
-    required this.buttonOpenMenuIcon,
     this.buttonIconSpace = 0,
     Key? key,
     this.buttonIconColor = Colors.black,
@@ -54,7 +52,7 @@ class BasicDropDownButton extends StatefulWidget {
   final DropDownButtonPosition position;
 
   /// Button style for the main button.
-  final ButtonStyle buttonStyle;
+  final ButtonStyle? buttonStyle;
 
   /// Text displayed on the main button.
   final String? buttonText;
@@ -65,27 +63,24 @@ class BasicDropDownButton extends StatefulWidget {
   /// Vertical spacing between the main button and the drop-down menu.
   final double menuVerticalSpacing;
 
-  /// Icon to display when the menu is open.
-  final Widget? buttonCloseMenuIcon;
-
-  /// Icon to display when the menu is closed.
-  final Widget? buttonOpenMenuIcon;
-
   /// Determines whether to show the indicator icon on the main button.
-  final bool showIndicatorIcon;
+  final Widget Function({required bool showedMenu})? buttonIcon;
 
   /// Padding for the menu items inside the drop-down.
   final EdgeInsets? menuPadding;
 
   /// Background color of the drop-down menu.
-  final Color menuBackgroundColor;
+  final Color? menuBackgroundColor;
 
   /// Custom builder for the main button.
-  final Widget Function(VoidCallback? showHideMenu)? customButton;
+  final Widget Function({
+    required VoidCallback? showHideMenuEvent,
+    required bool showMenu,
+  })? customButton;
 
   /// Custom widget for the entire menu list. If provided, overrides
   /// [menuItems].
-  final Widget? menuList;
+  final Widget Function(double buttonWidth)? menuList;
 
   /// Color for the icon displayed on the main button.
   final Color buttonIconColor;
@@ -161,6 +156,16 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
     return 0;
   }
 
+  /// Returns the height of the anchor button.
+  double get getWidth {
+    final context = _anchorKey.currentContext;
+    if (context != null) {
+      final box = context.findRenderObject()! as RenderBox;
+      return box.hasSize ? box.size.width : 0;
+    }
+    return 0;
+  }
+
   /// Determines the position of the drop-down menu based on available
   /// screen space.
   DropDownButtonPosition get _positionCalculate {
@@ -205,7 +210,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
           child: TapRegion(
             key: _menuKey,
             onTapOutside: (event) => showHideMenu(),
-            child: widget.menuList ??
+            child: widget.menuList?.call(getWidth) ??
                 Container(
                   decoration: BoxDecoration(
                     color: widget.menuBackgroundColor,
@@ -257,8 +262,11 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
         controller: _controller,
         overlayChildBuilder: _getMenuWidget,
         child: CompositedTransformTarget(
+          key: _anchorKey,
           link: _optionsLayerLink,
-          child: widget.customButton?.call(_showMenu ? null : showHideMenu) ??
+          child: widget.customButton?.call(
+                  showHideMenuEvent: _showMenu ? null : showHideMenu,
+                  showMenu: _showMenu) ??
               _defaultButton,
         ),
       ),
@@ -267,11 +275,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
 
   /// Default button widget if no custom button is provided.
   Widget get _defaultButton {
-    final icon = widget.showIndicatorIcon
-        ? _showMenu
-            ? widget.buttonCloseMenuIcon
-            : widget.buttonOpenMenuIcon
-        : null;
+    final icon = widget.buttonIcon?.call(showedMenu: _showMenu);
     final textWidget = widget.buttonChild ??
         Text(
           widget.buttonText!,
@@ -297,10 +301,9 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
       );
     }
     return TextButton(
-      key: _anchorKey,
       onPressed: _showMenu ? null : showHideMenu,
       style: _showMenu
-          ? widget.buttonStyle.merge(
+          ? widget.buttonStyle?.merge(
               TextButton.styleFrom(
                 disabledMouseCursor: SystemMouseCursors.click,
                 iconColor: widget.buttonIconColor,

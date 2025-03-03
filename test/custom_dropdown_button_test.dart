@@ -57,6 +57,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -126,6 +133,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -184,6 +198,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -240,6 +261,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -300,6 +328,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),
@@ -356,6 +391,13 @@ void main() {
               8,
             ),
             selectedValue: selected,
+            buttonIcon: ({required showedMenu}) => showedMenu
+                ? Icon(
+                    Icons.arrow_drop_down,
+                  )
+                : Icon(
+                    Icons.arrow_drop_up,
+                  ),
           );
         },
       ),

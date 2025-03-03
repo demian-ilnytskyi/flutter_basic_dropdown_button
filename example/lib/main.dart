@@ -334,7 +334,6 @@ class DropDownWidget extends StatelessWidget {
       buttonStyle: buttonStyle,
       buttonText: text,
       position: position,
-      buttonIconColor: iconColor,
       buttonTextStyle: buttonTextStyle,
       menuItems: List.generate(
         itemCount,
@@ -352,6 +351,15 @@ class DropDownWidget extends StatelessWidget {
         8,
       ),
       selectedValue: currentIndex,
+      buttonIcon: ({required showedMenu}) => showedMenu
+          ? Icon(
+              Icons.arrow_drop_down,
+              color: iconColor,
+            )
+          : Icon(
+              Icons.arrow_drop_up,
+              color: iconColor,
+            ),
     );
   }
 }

@@ -12,3 +12,5 @@ Fixed Assert
 Added margin for CustomDropDownButtonItem
 ## 1.1.0+4
 Fixed menuItemsSpacing. Now not add spacing for last item
+## 1.1.1
+Icon now one parameter and custom menu list has button width
