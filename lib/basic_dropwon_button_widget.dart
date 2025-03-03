@@ -31,7 +31,8 @@ class BasicDropDownButton extends StatefulWidget {
     this.menuKey,
   })  : assert(
           !(buttonChild == null && buttonText == null && customButton == null),
-          'Either provide a [buttonText] or a custom [customButton] or a custom [buttonChild].',
+          'Either provide a [buttonText] or a custom [customButton] or a '
+          'custom [buttonChild].',
         ),
         assert(
           !(menuItems == null && menuList == null),
@@ -265,8 +266,9 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
           key: _anchorKey,
           link: _optionsLayerLink,
           child: widget.customButton?.call(
-                  showHideMenuEvent: _showMenu ? null : showHideMenu,
-                  showMenu: _showMenu) ??
+                showHideMenuEvent: _showMenu ? null : showHideMenu,
+                showMenu: _showMenu,
+              ) ??
               _defaultButton,
         ),
       ),

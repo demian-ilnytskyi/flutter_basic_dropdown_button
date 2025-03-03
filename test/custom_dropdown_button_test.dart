@@ -58,10 +58,10 @@ void main() {
             ),
             selectedValue: selected,
             buttonIcon: ({required showedMenu}) => showedMenu
-                ? Icon(
+                ? const Icon(
                     Icons.arrow_drop_down,
                   )
-                : Icon(
+                : const Icon(
                     Icons.arrow_drop_up,
                   ),
           );
@@ -134,10 +134,10 @@ void main() {
             ),
             selectedValue: selected,
             buttonIcon: ({required showedMenu}) => showedMenu
-                ? Icon(
+                ? const Icon(
                     Icons.arrow_drop_down,
                   )
-                : Icon(
+                : const Icon(
                     Icons.arrow_drop_up,
                   ),
           );
@@ -199,10 +199,10 @@ void main() {
             ),
             selectedValue: selected,
             buttonIcon: ({required showedMenu}) => showedMenu
-                ? Icon(
+                ? const Icon(
                     Icons.arrow_drop_down,
                   )
-                : Icon(
+                : const Icon(
                     Icons.arrow_drop_up,
                   ),
           );
@@ -262,10 +262,10 @@ void main() {
             ),
             selectedValue: selected,
             buttonIcon: ({required showedMenu}) => showedMenu
-                ? Icon(
+                ? const Icon(
                     Icons.arrow_drop_down,
                   )
-                : Icon(
+                : const Icon(
                     Icons.arrow_drop_up,
                   ),
           );
@@ -319,7 +319,7 @@ void main() {
                 text: 'Item value is ${index + 1}',
                 onPressed: () => value.value = index,
                 icon: const Icon(Icons.abc),
-                margin: EdgeInsets.all(
+                margin: const EdgeInsets.all(
                   8,
                 ),
               ),
@@ -329,10 +329,10 @@ void main() {
             ),
             selectedValue: selected,
             buttonIcon: ({required showedMenu}) => showedMenu
-                ? Icon(
+                ? const Icon(
                     Icons.arrow_drop_down,
                   )
-                : Icon(
+                : const Icon(
                     Icons.arrow_drop_up,
                   ),
           );
@@ -392,10 +392,10 @@ void main() {
             ),
             selectedValue: selected,
             buttonIcon: ({required showedMenu}) => showedMenu
-                ? Icon(
+                ? const Icon(
                     Icons.arrow_drop_down,
                   )
-                : Icon(
+                : const Icon(
                     Icons.arrow_drop_up,
                   ),
           );

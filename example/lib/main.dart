@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 24),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
             Row(
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                   itemTextColor: Colors.black,
                   itemCount: 2,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 60,
                 ),
                 DropDownWidget(
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                   itemTextColor: Colors.white,
                   itemCount: 1,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 60,
                 ),
                 DropDownWidget(
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
             Row(
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                   itemTextColor: Colors.white,
                   itemCount: 5,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 60,
                 ),
                 DropDownWidget(
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                   itemTextColor: Colors.white,
                   itemCount: 6,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 60,
                 ),
                 DropDownWidget(
@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
   ButtonStyle get _buttonStyle1 => TextButton.styleFrom(
         backgroundColor: Colors.amber[700],
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w500,
         ),
@@ -181,10 +181,10 @@ class _HomePageState extends State<HomePage> {
 
   ButtonStyle get _itemButtonStyle1 => TextButton.styleFrom(
         backgroundColor: Colors.amber,
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           color: Colors.black,
         ),
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           // ignore: avoid_redundant_argument_values
           borderRadius: BorderRadius.zero,
         ),
@@ -248,10 +248,10 @@ class _HomePageState extends State<HomePage> {
 
   ButtonStyle get _itemButtonStyle4 => TextButton.styleFrom(
         backgroundColor: Colors.blueGrey,
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           color: Colors.black,
         ),
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           // ignore: avoid_redundant_argument_values
           borderRadius: BorderRadius.zero,
         ),
@@ -260,7 +260,7 @@ class _HomePageState extends State<HomePage> {
   ButtonStyle get _buttonStyle5 => TextButton.styleFrom(
         backgroundColor: Colors.teal[600],
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w400,
         ),
@@ -304,6 +304,7 @@ class _HomePageState extends State<HomePage> {
 
 class DropDownWidget extends StatelessWidget {
   const DropDownWidget({
+    Key? key,
     required this.event,
     required this.currentIndex,
     required this.buttonStyle,
@@ -312,10 +313,9 @@ class DropDownWidget extends StatelessWidget {
     required this.text,
     required this.itemTextColor,
     required this.itemCount,
-    Key? key,
     this.buttonTextStyle,
     this.iconColor,
-  });
+  }) : super(key: key);
   final void Function(int) event;
   final int? currentIndex;
 

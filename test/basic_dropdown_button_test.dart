@@ -128,7 +128,7 @@ void main() {
               child: const Text('test'),
             ),
             menuList: (buttonWidth) => ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: 100),
+              constraints: const BoxConstraints(maxHeight: 100),
               child: ListView.builder(
                 shrinkWrap: true,
                 itemBuilder: (context, index) => SizedBox(

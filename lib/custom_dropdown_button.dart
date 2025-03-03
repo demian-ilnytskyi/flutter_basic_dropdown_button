@@ -34,7 +34,8 @@ class CustomDropDownButton<T> extends StatelessWidget {
     this.buttonChild,
   })  : assert(
           !(buttonText == null && customButton == null && buttonChild == null),
-          'Either provide a [buttonText] or a custom [customButton] or a custom [buttonChild].',
+          'Either provide a [buttonText] or a custom [customButton]'
+          ' or a custom [buttonChild].',
         ),
         super(key: key);
 
