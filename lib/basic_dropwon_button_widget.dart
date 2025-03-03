@@ -81,7 +81,10 @@ class BasicDropDownButton extends StatefulWidget {
 
   /// Custom widget for the entire menu list. If provided, overrides
   /// [menuItems].
-  final Widget Function(double buttonWidth)? menuList;
+  final Widget Function({
+    required double buttonWidth,
+    required VoidCallback hideMenu,
+  })? menuList;
 
   /// Color for the icon displayed on the main button.
   final Color buttonIconColor;
@@ -211,7 +214,10 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
           child: TapRegion(
             key: _menuKey,
             onTapOutside: (event) => showHideMenu(),
-            child: widget.menuList?.call(getWidth) ??
+            child: widget.menuList?.call(
+                  buttonWidth: getWidth,
+                  hideMenu: showHideMenu,
+                ) ??
                 Container(
                   decoration: BoxDecoration(
                     color: widget.menuBackgroundColor,

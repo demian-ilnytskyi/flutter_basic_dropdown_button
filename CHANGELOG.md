@@ -14,3 +14,5 @@ Added margin for CustomDropDownButtonItem
 Fixed menuItemsSpacing. Now not add spacing for last item
 ## 1.1.1
 Icon now one parameter and custom menu list has button width
+## 1.1.1+1
+Menu list add hide function

@@ -127,7 +127,8 @@ void main() {
               onPressed: showHideMenuEvent,
               child: const Text('test'),
             ),
-            menuList: (buttonWidth) => ConstrainedBox(
+            menuList: ({required buttonWidth, required hideMenu}) =>
+                ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 100),
               child: ListView.builder(
                 shrinkWrap: true,
