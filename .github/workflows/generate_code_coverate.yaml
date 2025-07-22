@@ -15,5 +15,5 @@ concurrency:
 
 jobs:
   build_tests:
-    uses: DemianIlnytskyi/workflows/.github/workflows/push_code_coverage.yml@main
+    uses: demian-ilnytskyi/workflows/.github/workflows/push_code_coverage.yml@main
       
