@@ -14,4 +14,4 @@ concurrency:
 
 jobs:
   build_tests:
-    uses: demian-ilnytskyi/workflows/.github/workflows/ci_build_and_test.yml@main
+    uses: demian-ilnytskyi/workflows/.github/workflows/package_ci_build_and_test.yml@main
