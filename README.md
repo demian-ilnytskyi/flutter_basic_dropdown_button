@@ -2,10 +2,10 @@
 
 <p align="center">
   <a href="https://pub.dev/packages/basic_dropdown_button "><img src="https://img.shields.io/pub/v/basic_dropdown_button " alt="pub"></a>
-  <a href="https://app.codecov.io/github/DemienIlnutskiy/flutter_basic_dropdown_button"><img src="https://img.shields.io/codecov/c/github/DemienIlnutskiy/flutter_basic_dropdown_button" alt="pub"></a>
-  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/actions/workflows/generate_code_coverate.yaml"><img src="https://img.shields.io/github/actions/workflow/status/DemienIlnutskiy/flutter_basic_dropdown_button/generate_code_coverate.yaml?event=push&branch=main&label=tests&logo=github" alt="tests"></a>
-  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/actions/workflows/ci.yaml">
-    <img src="https://img.shields.io/github/actions/workflow/status/DemienIlnutskiy/flutter_basic_dropdown_button/ci.yaml?event=pull_request&label=Code%20Analysis%20%26%20Formatting&logo=github" 
+  <a href="https://app.codecov.io/github/demian-ilnytskyi/flutter_basic_dropdown_button"><img src="https://img.shields.io/codecov/c/github/demian-ilnytskyi/flutter_basic_dropdown_button" alt="pub"></a>
+  <a href="https://github.com/demian-ilnytskyi/flutter_basic_dropdown_button/actions/workflows/generate_code_coverate.yaml"><img src="https://img.shields.io/github/actions/workflow/status/demian-ilnytskyi/flutter_basic_dropdown_button/generate_code_coverate.yaml?event=push&branch=main&label=tests&logo=github" alt="tests"></a>
+  <a href="https://github.com/demian-ilnytskyi/flutter_basic_dropdown_button/actions/workflows/ci.yaml">
+    <img src="https://img.shields.io/github/actions/workflow/status/demian-ilnytskyi/flutter_basic_dropdown_button/ci.yaml?event=pull_request&label=Code%20Analysis%20%26%20Formatting&logo=github" 
         alt="Code Analysis & Formatting">
   </a>
 </p>
@@ -17,26 +17,26 @@ A highly customizable drop-down button widget for Flutter. This package offers t
 ## Preview
 
 <p align="center">
-  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/lib/custom_dropdown_button.dart">
+  <a href="https://github.com/demian-ilnytskyi/flutter_basic_dropdown_button/blob/main/lib/custom_dropdown_button.dart">
    Preview
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/assets/read_me/preview.png">
-    <img src="https://raw.githubusercontent.com/DemienIlnutskiy/flutter_basic_dropdown_button/main/assets/read_me/preview.png" alt="preview">
+  <a href="https://github.com/demian-ilnytskyi/flutter_basic_dropdown_button/blob/main/assets/read_me/preview.png">
+    <img src="https://raw.githubusercontent.com/demian-ilnytskyi/flutter_basic_dropdown_button/main/assets/read_me/preview.png" alt="preview">
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/lib/basic_dropwon_button_widget.dart">
+  <a href="https://github.com/demian-ilnytskyi/flutter_basic_dropdown_button/blob/main/lib/basic_dropwon_button_widget.dart">
    Position Adaptive
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/DemienIlnutskiy/flutter_basic_dropdown_button/blob/main/assets/read_me/adaptive_menu_position.gif">
-    <img src="https://raw.githubusercontent.com/DemienIlnutskiy/flutter_basic_dropdown_button/main/assets/read_me/adaptive_menu_position.gif" alt="position adaptive">
+  <a href="https://github.com/demian-ilnytskyi/flutter_basic_dropdown_button/blob/main/assets/read_me/adaptive_menu_position.gif">
+    <img src="https://raw.githubusercontent.com/demian-ilnytskyi/flutter_basic_dropdown_button/main/assets/read_me/adaptive_menu_position.gif" alt="position adaptive">
   </a>
 </p>
 
