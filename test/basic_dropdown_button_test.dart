@@ -187,4 +187,61 @@ void main() {
 
     expect(value.value, null);
   });
+
+  testWidgets('Keyboard size update and other branches coverage',
+      (tester) async {
+    await initTest(
+      tester: tester,
+      child: BasicDropDownButton(
+        buttonStyle: const ButtonStyle(),
+        buttonText: 'Test',
+        menuItems: (hideMenu) => [
+          const Text('Item 1'),
+          const Text('Item 2'),
+        ],
+        menuVerticalSpacing: 10,
+        menuBackgroundColor: Colors.white,
+        buttonIcon: ({required showedMenu}) =>
+            const Icon(Icons.arrow_drop_down),
+        buttonIconFirst: false,
+        buttonIconSpace: 5,
+        menuItemsSpacing: 5,
+        menuPadding: const EdgeInsets.all(8),
+        position: DropDownButtonPosition.bottomCenter,
+      ),
+    );
+
+    // Initial state
+    expect(find.text('Test'), findsOneWidget);
+    expect(find.byType(Icon), findsOneWidget);
+
+    // Simulate keyboard appearance (more than 10 pixels difference)
+    tester.view.viewInsets = const FakeViewPadding(bottom: 300);
+    tester.binding.handleMetricsChanged();
+    await tester.pump();
+
+    // Opening menu to trigger _positionCalculate with keyboard size
+    await tester.tap(find.text('Test'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Item 1'), findsOneWidget);
+
+    // Simulate keyboard disappearance (bottomInset = 0)
+    tester.view.viewInsets = FakeViewPadding.zero;
+    tester.binding.handleMetricsChanged();
+    await tester.pumpAndSettle();
+
+    // To hit line 131: keyboardDifferentSize < 10 and bottomInset != 0
+    // Current _keyboardSize is 0. Set to 5.
+    tester.view.viewInsets = const FakeViewPadding(bottom: 5);
+    tester.binding.handleMetricsChanged();
+    await tester.pump();
+
+    // Close menu
+    await tester.tap(find.text('Test')); // Tap button to close (or tap outside)
+    await tester.pumpAndSettle();
+
+    // Reset view insets
+    tester.view.resetViewInsets();
+  });
 }
