@@ -33,7 +33,3 @@ Icon now one parameter and custom menu list has button width
 ## 1.1.1+1
 
 Menu list add hide function
-
-## 1.1.1+1
-
-Change screen height base on keyboard size
