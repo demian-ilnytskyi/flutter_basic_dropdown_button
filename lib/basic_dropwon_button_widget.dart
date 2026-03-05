@@ -180,7 +180,8 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
 
     if (menuHeight != null && renderObject != null) {
       final renderBox = renderObject as RenderBox;
-      final screenHeight = MediaQuery.sizeOf(context).height;
+      final screenHeight = MediaQuery.sizeOf(context).height -
+          MediaQuery.viewPaddingOf(context).bottom;
       final buttonPosition = renderBox.localToGlobal(Offset.zero);
       final availableHeight = screenHeight - (buttonPosition.dy + getHeight);
       hasBottomSpace = availableHeight > menuHeight!;
