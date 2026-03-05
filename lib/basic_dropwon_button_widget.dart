@@ -106,17 +106,40 @@ class BasicDropDownButton extends StatefulWidget {
   State<BasicDropDownButton> createState() => _BasicDropDownButtonState();
 }
 
-class _BasicDropDownButtonState extends State<BasicDropDownButton> {
+class _BasicDropDownButtonState extends State<BasicDropDownButton>
+    with WidgetsBindingObserver {
   late bool _showMenu;
   late OverlayPortalController _controller;
   late LayerLink _optionsLayerLink;
   late double? menuHeight;
   late GlobalKey _menuKey;
   late GlobalKey _anchorKey;
+  double _keyboardSize = 0;
+
+  @override
+  void didChangeMetrics() {
+    _updateKeyboardSize();
+  }
+
+  void _updateKeyboardSize() {
+    final view = WidgetsBinding.instance.platformDispatcher.views.first;
+    final bottomInset = view.viewInsets.bottom / view.devicePixelRatio;
+    final keyboardDifferentSize = (bottomInset - _keyboardSize).abs();
+
+    if (keyboardDifferentSize < 10) {
+      if (bottomInset != 0) {
+        return;
+      }
+    }
+    setState(() {
+      _keyboardSize = bottomInset;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _controller = OverlayPortalController();
     _optionsLayerLink = LayerLink();
 
@@ -180,8 +203,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
 
     if (menuHeight != null && renderObject != null) {
       final renderBox = renderObject as RenderBox;
-      final screenHeight = MediaQuery.sizeOf(context).height -
-          MediaQuery.viewPaddingOf(context).bottom;
+      final screenHeight = MediaQuery.sizeOf(context).height - _keyboardSize;
       final buttonPosition = renderBox.localToGlobal(Offset.zero);
       final availableHeight = screenHeight - (buttonPosition.dy + getHeight);
       hasBottomSpace = availableHeight > menuHeight!;
@@ -321,6 +343,12 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton> {
           : widget.buttonStyle,
       child: child,
     );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 }
 
