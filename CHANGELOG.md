@@ -41,3 +41,6 @@ Change screen height base on keyboard size
 ## 1.1.3
 
 Fix: Change screen height base on keyboard size
+## 1.1.4
+
+Fix: Double tap on outside not reaopen drop down menu
