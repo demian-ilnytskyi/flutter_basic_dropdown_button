@@ -152,7 +152,6 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
 
   /// Toggles the visibility of the drop-down menu.
   void showHideMenu() {
-    if (!_showMenu) return;
     _controller.toggle();
     setState(() {
       _showMenu = !_showMenu;
@@ -237,7 +236,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
           ),
           child: TapRegion(
             key: _menuKey,
-            onTapOutside: (event) => showHideMenu(),
+            onTapOutside: _showMenu ? (event) => showHideMenu() : null,
             child: widget.menuList?.call(
                   buttonWidth: getWidth,
                   hideMenu: showHideMenu,
