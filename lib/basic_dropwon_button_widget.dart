@@ -152,6 +152,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
 
   /// Toggles the visibility of the drop-down menu.
   void showHideMenu() {
+    if (!_showMenu) return;
     _controller.toggle();
     setState(() {
       _showMenu = !_showMenu;
