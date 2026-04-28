@@ -115,6 +115,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
   late GlobalKey _menuKey;
   late GlobalKey _anchorKey;
   double _keyboardSize = 0;
+  late String _groupId;
 
   @override
   void didChangeMetrics() {
@@ -148,6 +149,8 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
 
     _menuKey = GlobalKey(debugLabel: 'menu_key');
     _anchorKey = GlobalKey(debugLabel: 'button_key');
+
+    _groupId = 'basic_dropdown_menu_${_menuKey.hashCode}';
   }
 
   /// Toggles the visibility of the drop-down menu.
@@ -236,6 +239,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
           ),
           child: TapRegion(
             key: _menuKey,
+            groupId: _groupId,
             onTapOutside: _showMenu ? (event) => showHideMenu() : null,
             child: widget.menuList?.call(
                   buttonWidth: getWidth,
@@ -294,11 +298,14 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
         child: CompositedTransformTarget(
           key: _anchorKey,
           link: _optionsLayerLink,
-          child: widget.customButton?.call(
-                showHideMenuEvent: _showMenu ? null : showHideMenu,
-                showMenu: _showMenu,
-              ) ??
-              _defaultButton,
+          child: TapRegion(
+            groupId: _groupId,
+            child: widget.customButton?.call(
+                  showHideMenuEvent: showHideMenu,
+                  showMenu: _showMenu,
+                ) ??
+                _defaultButton,
+          ),
         ),
       ),
     );
@@ -332,7 +339,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
       );
     }
     return TextButton(
-      onPressed: _showMenu ? null : showHideMenu,
+      onPressed: showHideMenu,
       style: _showMenu
           ? widget.buttonStyle?.merge(
               TextButton.styleFrom(
