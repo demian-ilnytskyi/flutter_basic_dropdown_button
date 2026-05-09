@@ -29,6 +29,8 @@ class BasicDropDownButton extends StatefulWidget {
     this.customButton,
     this.menuList,
     this.menuKey,
+    this.listener,
+    this.onMenuChanged,
   })  : assert(
           !(buttonChild == null && buttonText == null && customButton == null),
           'Either provide a [buttonText] or a custom [customButton] or a '
@@ -75,8 +77,9 @@ class BasicDropDownButton extends StatefulWidget {
 
   /// Custom builder for the main button.
   final Widget Function({
-    required VoidCallback? showHideMenuEvent,
+    required VoidCallback showHideMenuEvent,
     required bool showMenu,
+    required String groupId,
   })? customButton;
 
   /// Custom widget for the entire menu list. If provided, overrides
@@ -101,6 +104,12 @@ class BasicDropDownButton extends StatefulWidget {
   final bool buttonIconFirst;
 
   final double buttonIconSpace;
+
+  final void Function(
+    ListenerParams Function() getParams,
+  )? listener;
+
+  final void Function({required bool showMenu})? onMenuChanged;
 
   @override
   State<BasicDropDownButton> createState() => _BasicDropDownButtonState();
@@ -151,6 +160,15 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
     _anchorKey = GlobalKey(debugLabel: 'button_key');
 
     _groupId = 'basic_dropdown_menu_${_menuKey.hashCode}';
+
+    widget.listener?.call(
+      () {
+        return ListenerParams(
+          showHideMenuEvent: showHideMenu,
+          showMenu: _showMenu,
+        );
+      },
+    );
   }
 
   /// Toggles the visibility of the drop-down menu.
@@ -159,6 +177,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
     setState(() {
       _showMenu = !_showMenu;
     });
+    widget.onMenuChanged?.call(showMenu: _showMenu);
   }
 
   /// Sets the height of the drop-down menu after it has been rendered.
@@ -303,6 +322,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
             child: widget.customButton?.call(
                   showHideMenuEvent: showHideMenu,
                   showMenu: _showMenu,
+                  groupId: _groupId,
                 ) ??
                 _defaultButton,
           ),
@@ -432,4 +452,14 @@ extension _DropDownButtonPositionExtension on DropDownButtonPosition {
         return Alignment.topRight;
     }
   }
+}
+
+class ListenerParams {
+  ListenerParams({
+    required this.showHideMenuEvent,
+    required this.showMenu,
+  });
+
+  final VoidCallback showHideMenuEvent;
+  final bool showMenu;
 }

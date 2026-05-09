@@ -44,7 +44,11 @@ void main() {
             menuKey: menuKey,
             buttonStyle: const ButtonStyle(),
             buttonText: null,
-            customButton: ({required showHideMenuEvent, required showMenu}) =>
+            customButton: ({
+              required showHideMenuEvent,
+              required showMenu,
+              String? groupId,
+            }) =>
                 TextButton(
               onPressed: showHideMenuEvent,
               child: const Text('test'),
@@ -122,7 +126,11 @@ void main() {
             menuItems: null,
             buttonStyle: const ButtonStyle(),
             buttonText: null,
-            customButton: ({required showHideMenuEvent, required showMenu}) =>
+            customButton: ({
+              required showHideMenuEvent,
+              required showMenu,
+              String? groupId,
+            }) =>
                 TextButton(
               onPressed: showHideMenuEvent,
               child: const Text('test'),
@@ -243,5 +251,39 @@ void main() {
 
     // Reset view insets
     tester.view.resetViewInsets();
+  });
+
+  testWidgets('BasicDropDownButton listener and onMenuChanged coverage',
+      (tester) async {
+    var onMenuChangedCalled = false;
+    var listenerCalled = false;
+
+    await initTest(
+      tester: tester,
+      child: BasicDropDownButton(
+        buttonStyle: const ButtonStyle(),
+        buttonText: 'Test',
+        menuItems: (hideMenu) => [const Text('Item 1')],
+        menuVerticalSpacing: 0,
+        menuBackgroundColor: Colors.white,
+        buttonIcon: null,
+        position: DropDownButtonPosition.bottomCenter,
+        onMenuChanged: ({required showMenu}) {
+          onMenuChangedCalled = true;
+        },
+        listener: (getParams) {
+          listenerCalled = true;
+          final params = getParams();
+          expect(params.showMenu, isFalse);
+          params.showHideMenuEvent(); // Toggle menu
+        },
+      ),
+    );
+
+    expect(listenerCalled, isTrue);
+    await tester.pumpAndSettle();
+
+    expect(onMenuChangedCalled, isTrue);
+    expect(find.text('Item 1'), findsOneWidget);
   });
 }
