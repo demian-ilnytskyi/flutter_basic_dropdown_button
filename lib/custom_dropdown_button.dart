@@ -74,6 +74,7 @@ class CustomDropDownButton<T> extends StatelessWidget {
   final Widget Function({
     required VoidCallback? showHideMenuEvent,
     required bool showMenu,
+    String? groupId,
   })? customButton;
 
   /// The currently selected value.
