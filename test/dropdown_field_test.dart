@@ -184,7 +184,7 @@ void main() {
         children: [
           AppDropDownTextField<String>(
             menuItems: (hideMenu) => [const Text('Item')],
-            onTapOutside: (event) => tappedOutside = true,
+            onTapOutside: ({required showMenu}) => tappedOutside = true,
           ),
           const SizedBox(height: 100, child: Text('Outside')),
         ],

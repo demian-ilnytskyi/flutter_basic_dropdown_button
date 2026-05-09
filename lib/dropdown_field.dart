@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 
 import 'package:basic_dropdown_button/basic_dropwon_button_widget.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -71,16 +70,8 @@ class AppDropDownTextField<T> extends StatefulWidget {
     this.magnifierConfiguration,
     this.undoController,
     this.canRequestFocus = true,
-    this.onTapAlwaysCalled = false,
     this.contentInsertionConfiguration,
-    this.statesController,
     this.cursorOpacityAnimates,
-    this.stylusHandwritingEnabled = true,
-    this.cursorErrorColor,
-    this.hintLocales,
-    this.ignorePointers,
-    this.onTapUpOutside,
-    this.selectAllOnFocus = false,
 
     // BasicDropDownButton parameters
     this.menuItems,
@@ -143,7 +134,7 @@ class AppDropDownTextField<T> extends StatefulWidget {
   final bool? enableInteractiveSelection;
   final TextSelectionControls? selectionControls;
   final GestureTapCallback? onTap;
-  final TapRegionCallback? onTapOutside;
+  final void Function({required bool showMenu})? onTapOutside;
   final MouseCursor? mouseCursor;
   final InputCounterWidgetBuilder? buildCounter;
   final ScrollController? scrollController;
@@ -157,17 +148,8 @@ class AppDropDownTextField<T> extends StatefulWidget {
   final TextMagnifierConfiguration? magnifierConfiguration;
   final UndoHistoryController? undoController;
   final bool canRequestFocus;
-  final bool onTapAlwaysCalled;
   final ContentInsertionConfiguration? contentInsertionConfiguration;
-  final WidgetStatesController? statesController;
   final bool? cursorOpacityAnimates;
-  final bool stylusHandwritingEnabled;
-  final Color? cursorErrorColor;
-  final List<Locale>? hintLocales;
-  final bool? ignorePointers;
-  final TapRegionUpCallback? onTapUpOutside;
-  final bool selectAllOnFocus;
-
   // BasicDropDownButton fields
   final List<Widget> Function(VoidCallback hideMenu)? menuItems;
   final double menuVerticalSpacing;
@@ -192,7 +174,7 @@ class AppDropDownTextField<T> extends StatefulWidget {
     required TextEditingController controller,
     required Widget Function(BuildContext, EditableTextState)?
         contextMenuBuilder,
-    required void Function(PointerDownEvent)? onTapOutside,
+    required void Function({required bool showMenu})? onTapOutside,
   })? customField;
 
   final void Function({required bool showMenu})? onMenuChanged;
@@ -256,6 +238,7 @@ class _AppDropDownTextFieldState<T> extends State<AppDropDownTextField<T>> {
           },
       listener: (getParams) =>
           _focusNode.addListener(() => _focusListener(getParams)),
+      onTapOutside: _onTapOutside,
       customButton: ({
         required showHideMenuEvent,
         required showMenu,
@@ -306,7 +289,6 @@ class _AppDropDownTextFieldState<T> extends State<AppDropDownTextField<T>> {
                   enableSuggestions: widget.enableSuggestions,
                   maxLines: widget.maxLines,
                   minLines: widget.minLines,
-                  groupId: groupId,
                   expands: widget.expands,
                   maxLength: widget.maxLength,
                   maxLengthEnforcement: widget.maxLengthEnforcement,
@@ -328,7 +310,6 @@ class _AppDropDownTextFieldState<T> extends State<AppDropDownTextField<T>> {
                   enableInteractiveSelection: widget.enableInteractiveSelection,
                   selectionControls: widget.selectionControls,
                   onTap: widget.onTap,
-                  onTapOutside: _onTapOutside,
                   mouseCursor: widget.mouseCursor,
                   buildCounter: widget.buildCounter,
                   contextMenuBuilder: _contextMenuBuilder(groupId),
@@ -343,24 +324,16 @@ class _AppDropDownTextFieldState<T> extends State<AppDropDownTextField<T>> {
                   magnifierConfiguration: widget.magnifierConfiguration,
                   undoController: widget.undoController,
                   canRequestFocus: widget.canRequestFocus,
-                  onTapAlwaysCalled: widget.onTapAlwaysCalled,
                   contentInsertionConfiguration:
                       widget.contentInsertionConfiguration,
-                  statesController: widget.statesController,
                   cursorOpacityAnimates: widget.cursorOpacityAnimates,
-                  stylusHandwritingEnabled: widget.stylusHandwritingEnabled,
-                  cursorErrorColor: widget.cursorErrorColor,
-                  hintLocales: widget.hintLocales,
-                  ignorePointers: widget.ignorePointers,
-                  onTapUpOutside: widget.onTapUpOutside,
-                  selectAllOnFocus: widget.selectAllOnFocus,
                 ),
     );
   }
 
-  void _onTapOutside(PointerDownEvent details) {
+  void _onTapOutside({required bool showMenu}) {
     if (widget.onTapOutside != null) {
-      widget.onTapOutside!(details);
+      widget.onTapOutside!(showMenu: showMenu);
     } else {
       if (_focusNode.hasFocus) _focusNode.unfocus();
     }
@@ -370,15 +343,15 @@ class _AppDropDownTextFieldState<T> extends State<AppDropDownTextField<T>> {
     String groupId,
   ) {
     return (context, editableTextState) {
-      if (defaultTargetPlatform == TargetPlatform.iOS &&
-          SystemContextMenu.isSupported(context)) {
-        return TapRegion(
-          groupId: groupId,
-          child: SystemContextMenu.editableText(
-            editableTextState: editableTextState,
-          ),
-        );
-      }
+      // if (defaultTargetPlatform == TargetPlatform.iOS &&
+      //     SystemContextMenu.isSupported(context)) {
+      //   return TapRegion(
+      //     groupId: groupId,
+      //     child: SystemContextMenu.editableText(
+      //       editableTextState: editableTextState,
+      //     ),
+      //   );
+      // }
       return TapRegion(
         groupId: groupId,
         child: AdaptiveTextSelectionToolbar.editableText(

@@ -31,6 +31,7 @@ class BasicDropDownButton extends StatefulWidget {
     this.menuKey,
     this.listener,
     this.onMenuChanged,
+    this.onTapOutside,
   })  : assert(
           !(buttonChild == null && buttonText == null && customButton == null),
           'Either provide a [buttonText] or a custom [customButton] or a '
@@ -110,6 +111,8 @@ class BasicDropDownButton extends StatefulWidget {
   )? listener;
 
   final void Function({required bool showMenu})? onMenuChanged;
+
+  final void Function({required bool showMenu})? onTapOutside;
 
   @override
   State<BasicDropDownButton> createState() => _BasicDropDownButtonState();
@@ -259,7 +262,12 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
           child: TapRegion(
             key: _menuKey,
             groupId: _groupId,
-            onTapOutside: _showMenu ? (event) => showHideMenu() : null,
+            onTapOutside: (event) {
+              if (_showMenu) {
+                showHideMenu();
+              }
+              widget.onTapOutside?.call(showMenu: _showMenu);
+            },
             child: widget.menuList?.call(
                   buttonWidth: getWidth,
                   hideMenu: showHideMenu,
