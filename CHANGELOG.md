@@ -41,6 +41,7 @@ Change screen height base on keyboard size
 ## 1.1.3
 
 Fix: Change screen height base on keyboard size
+
 ## 1.1.4
 
 Fix: Double tap on outside not reaopen drop down menu
@@ -48,3 +49,9 @@ Fix: Double tap on outside not reaopen drop down menu
 ## 1.1.5
 
 Fix: Tapping the button when the menu is open now allows for actions without the menu closing automatically.
+
+## 1.2.0
+
+* Added `AppDropDownTextField` widget which combines a `TextField` with a dropdown menu.
+* Added support for custom `onTapOutside` callbacks.
+* Improved focus management for text-based dropdowns.
