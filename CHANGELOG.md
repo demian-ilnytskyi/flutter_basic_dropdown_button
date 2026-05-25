@@ -62,3 +62,8 @@ menu closing automatically.
 
 - Added `itemText` parameter to `AppDropDownTextField`.
 - Added selectItem from dropdown to textField
+
+## 1.2.2
+
+- Improved automated test coverage to 100%.
+- Added comprehensive widget testing for the `didUpdateWidget` lifecycle in `AppDropDownTextField`.
