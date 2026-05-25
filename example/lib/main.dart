@@ -249,6 +249,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
+                    itemText: (String value) {
+                      return value;
+                    },
                   ),
                 ),
                 // Style 4: Custom Field Builder
@@ -309,6 +312,9 @@ class _HomePageState extends State<HomePage> {
                         onTap: hideMenu,
                       ),
                     ),
+                    itemText: (String value) {
+                      return value;
+                    },
                   ),
                 ),
               ],
@@ -384,6 +390,7 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         }),
+        itemText: (String value) => value,
       ),
     );
   }

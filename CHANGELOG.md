@@ -48,10 +48,17 @@ Fix: Double tap on outside not reaopen drop down menu
 
 ## 1.1.5
 
-Fix: Tapping the button when the menu is open now allows for actions without the menu closing automatically.
+Fix: Tapping the button when the menu is open now allows for actions without the
+menu closing automatically.
 
 ## 1.2.0
 
-* Added `AppDropDownTextField` widget which combines a `TextField` with a dropdown menu.
-* Added support for custom `onTapOutside` callbacks.
-* Improved focus management for text-based dropdowns.
+- Added `AppDropDownTextField` widget which combines a `TextField` with a
+  dropdown menu.
+- Added support for custom `onTapOutside` callbacks.
+- Improved focus management for text-based dropdowns.
+
+## 1.2.1
+
+- Added `itemText` parameter to `AppDropDownTextField`.
+- Added selectItem from dropdown to textField

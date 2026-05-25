@@ -29,6 +29,7 @@ void main() {
       child: AppDropDownTextField<String>(
         key: fieldKey,
         controller: controller,
+        itemText: (value) => value,
         menuItems: (hideMenu) => [
           ListTile(
             title: const Text('Item 1'),
@@ -62,6 +63,7 @@ void main() {
     await initTest(
       tester: tester,
       child: AppDropDownTextField<String>(
+        itemText: (value) => value,
         initValue: () => 'Initial',
         customField: ({
           required showHideMenuEvent,
@@ -93,6 +95,7 @@ void main() {
       tester: tester,
       child: AppDropDownTextField<String>(
         key: key,
+        itemText: (value) => value,
         menuItems: (hideMenu) => [const Text('Item')],
         decoration: ({required showMenu}) => InputDecoration(
           labelText: showMenu ? 'Open' : 'Closed',
@@ -113,6 +116,7 @@ void main() {
     await initTest(
       tester: tester,
       child: AppDropDownTextField<String>(
+        itemText: (value) => value,
         menuItems: (hideMenu) => [const Text('Item')],
       ),
     );
@@ -125,6 +129,7 @@ void main() {
     await initTest(
       tester: tester,
       child: AppDropDownTextField<String>(
+        itemText: (value) => value,
         menuItems: (hideMenu) => [const Text('Item')],
         suffixIcon: ({required showMenu}) => const Text('CustomSuffix'),
       ),
@@ -140,6 +145,7 @@ void main() {
       child: Column(
         children: [
           AppDropDownTextField<String>(
+            itemText: (value) => value,
             focusNode: focusNode,
             menuItems: (hideMenu) => [const Text('Item')],
           ),
@@ -162,6 +168,7 @@ void main() {
     await initTest(
       tester: tester,
       child: AppDropDownTextField<String>(
+        itemText: (value) => value,
         menuItems: (hideMenu) => [const Text('Item')],
       ),
     );
@@ -183,6 +190,7 @@ void main() {
       child: Column(
         children: [
           AppDropDownTextField<String>(
+            itemText: (value) => value,
             menuItems: (hideMenu) => [const Text('Item')],
             onTapOutside: ({required showMenu}) => tappedOutside = true,
           ),
@@ -204,6 +212,7 @@ void main() {
     await initTest(
       tester: tester,
       child: AppDropDownTextField<String>(
+        itemText: (value) => value,
         focusNode: focusNode,
         menuItems: (hideMenu) => [const Text('Item')],
       ),
@@ -226,6 +235,7 @@ void main() {
     await initTest(
       tester: tester,
       child: AppDropDownTextField<String>(
+        itemText: (value) => value,
         menuItems: (hideMenu) => [const Text('Item')],
       ),
     );
@@ -245,5 +255,78 @@ void main() {
     }
 
     debugDefaultTargetPlatformOverride = null;
+  });
+
+  testWidgets('AppDropDownTextField didUpdateWidget and selectItem coverage',
+      (tester) async {
+    // 1. Initial pump with first item
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AppDropDownTextField<String>(
+            itemText: (value) => 'Item: $value',
+            selectItem: 'First',
+            menuItems: (hideMenu) => [const Text('Item')],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // Initially empty since selectItem is handled in didUpdateWidget
+    expect(find.byType(TextField), findsOneWidget);
+    var textField = tester.widget<TextField>(find.byType(TextField));
+    expect(textField.controller?.text, '');
+
+    // 2. Re-pump with second item (different non-null value) ->
+    // updates controller
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AppDropDownTextField<String>(
+            itemText: (value) => 'Item: $value',
+            selectItem: 'Second',
+            menuItems: (hideMenu) => [const Text('Item')],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    textField = tester.widget<TextField>(find.byType(TextField));
+    expect(textField.controller?.text, 'Item: Second');
+
+    // 3. Re-pump with same item -> no change to controller
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AppDropDownTextField<String>(
+            itemText: (value) => 'Item: $value',
+            selectItem: 'Second',
+            menuItems: (hideMenu) => [const Text('Item')],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    textField = tester.widget<TextField>(find.byType(TextField));
+    expect(textField.controller?.text, 'Item: Second');
+
+    // 4. Re-pump with null item -> no change to controller
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: AppDropDownTextField<String>(
+            itemText: (value) => 'Item: $value',
+            menuItems: (hideMenu) => [const Text('Item')],
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    textField = tester.widget<TextField>(find.byType(TextField));
+    expect(textField.controller?.text, 'Item: Second');
   });
 }

@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 /// menu-related parameters to the underlying [BasicDropDownButton].
 class AppDropDownTextField<T> extends StatefulWidget {
   const AppDropDownTextField({
+    required this.itemText,
     Key? key,
     // TextField parameters
     this.controller,
@@ -88,6 +89,7 @@ class AppDropDownTextField<T> extends StatefulWidget {
     this.customField,
     this.onMenuChanged,
     this.suffixIcon,
+    this.selectItem,
   }) : super(key: key);
 
   // TextField fields
@@ -165,6 +167,8 @@ class AppDropDownTextField<T> extends StatefulWidget {
   })? menuList;
   final Key? menuKey;
   final String? Function()? initValue;
+  final T? selectItem;
+  final String Function(T value) itemText;
 
   final Widget Function({
     required VoidCallback showHideMenuEvent,
@@ -202,6 +206,15 @@ class _AppDropDownTextFieldState<T> extends State<AppDropDownTextField<T>> {
     _controller.dispose();
     _focusNode.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant AppDropDownTextField<T> oldWidget) {
+    if (oldWidget.selectItem != widget.selectItem &&
+        widget.selectItem != null) {
+      _controller.text = widget.itemText(widget.selectItem as T);
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   void _focusListener(ListenerParams Function() paramsResult) {
