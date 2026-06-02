@@ -365,8 +365,7 @@ void main() {
     expect(menuLeftRect.left, customPadding);
   });
 
-  testWidgets('BasicDropDownButton menuOffset parameter test',
-      (tester) async {
+  testWidgets('BasicDropDownButton menuOffset parameter test', (tester) async {
     const customOffset = Offset(15, 25);
 
     await tester.pumpWidget(
