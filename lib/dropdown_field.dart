@@ -90,6 +90,8 @@ class AppDropDownTextField<T> extends StatefulWidget {
     this.onMenuChanged,
     this.suffixIcon,
     this.selectItem,
+    this.menuHorizontalPadding = 8.0,
+    this.menuOffset = Offset.zero,
   }) : super(key: key);
 
   // TextField fields
@@ -184,6 +186,12 @@ class AppDropDownTextField<T> extends StatefulWidget {
   final void Function({required bool showMenu})? onMenuChanged;
   final Widget Function({required bool showMenu})? suffixIcon;
 
+  /// Horizontal padding/boundary offset to keep menu within the screen width.
+  final double menuHorizontalPadding;
+
+  /// Custom offset to manually adjust the menu position from default.
+  final Offset menuOffset;
+
   @override
   State<AppDropDownTextField<T>> createState() =>
       _AppDropDownTextFieldState<T>();
@@ -239,6 +247,8 @@ class _AppDropDownTextFieldState<T> extends State<AppDropDownTextField<T>> {
       menuBorderRadius: widget.menuBorderRadius,
       menuList: widget.menuList,
       menuKey: widget.menuKey,
+      menuHorizontalPadding: widget.menuHorizontalPadding,
+      menuOffset: widget.menuOffset,
       // Required but not used when customButton is provided
       buttonStyle: null,
       buttonText: null,

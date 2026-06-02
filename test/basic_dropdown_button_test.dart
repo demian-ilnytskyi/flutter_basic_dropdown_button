@@ -286,4 +286,129 @@ void main() {
     expect(onMenuChangedCalled, isTrue);
     expect(find.text('Item 1'), findsOneWidget);
   });
+
+  testWidgets('BasicDropDownButton horizontal bounds shifting test',
+      (tester) async {
+    const customPadding = 12.0;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Stack(
+            children: [
+              Positioned(
+                right: 2,
+                top: 100,
+                child: BasicDropDownButton(
+                  key: const Key('dropdown_right'),
+                  menuKey: const Key('menu_right'),
+                  menuHorizontalPadding: customPadding,
+                  buttonStyle: const ButtonStyle(),
+                  buttonText: 'Right Button',
+                  position: DropDownButtonPosition.bottomLeft,
+                  menuItems: (hideMenu) => [
+                    const SizedBox(
+                      width: 200,
+                      child: Text('Menu Item Right'),
+                    ),
+                  ],
+                  buttonIcon: null,
+                  menuVerticalSpacing: 8,
+                  menuBackgroundColor: Colors.grey,
+                ),
+              ),
+              Positioned(
+                left: 2,
+                top: 300,
+                child: BasicDropDownButton(
+                  key: const Key('dropdown_left'),
+                  menuKey: const Key('menu_left'),
+                  menuHorizontalPadding: customPadding,
+                  buttonStyle: const ButtonStyle(),
+                  buttonText: 'Left Button',
+                  position: DropDownButtonPosition.bottomRight,
+                  menuItems: (hideMenu) => [
+                    const SizedBox(
+                      width: 200,
+                      child: Text('Menu Item Left'),
+                    ),
+                  ],
+                  buttonIcon: null,
+                  menuVerticalSpacing: 8,
+                  menuBackgroundColor: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    // Open right dropdown
+    await tester.tap(find.byKey(const Key('dropdown_right')));
+    await tester.pumpAndSettle();
+
+    final menuRightRect = tester.getRect(find.byKey(const Key('menu_right')));
+    expect(menuRightRect.right, 800.0 - customPadding);
+
+    // Close right dropdown
+    await tester.tap(find.byKey(const Key('dropdown_right')));
+    await tester.pumpAndSettle();
+
+    // Open left dropdown
+    await tester.tap(find.byKey(const Key('dropdown_left')));
+    await tester.pumpAndSettle();
+
+    final menuLeftRect = tester.getRect(find.byKey(const Key('menu_left')));
+    expect(menuLeftRect.left, customPadding);
+  });
+
+  testWidgets('BasicDropDownButton menuOffset parameter test',
+      (tester) async {
+    const customOffset = Offset(15, 25);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: BasicDropDownButton(
+              key: const Key('dropdown_offset'),
+              menuKey: const Key('menu_offset'),
+              menuOffset: customOffset,
+              buttonStyle: const ButtonStyle(),
+              buttonText: 'Offset Button',
+              position: DropDownButtonPosition.bottomCenter,
+              menuItems: (hideMenu) => [
+                const SizedBox(
+                  width: 100,
+                  height: 50,
+                  child: Text('Menu Item Offset'),
+                ),
+              ],
+              buttonIcon: null,
+              menuVerticalSpacing: 0,
+              menuBackgroundColor: Colors.grey,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    // Open dropdown
+    await tester.tap(find.byKey(const Key('dropdown_offset')));
+    await tester.pumpAndSettle();
+
+    final buttonRect = tester.getRect(find.byKey(const Key('dropdown_offset')));
+    final menuRect = tester.getRect(find.byKey(const Key('menu_offset')));
+
+    expect(
+      menuRect.left,
+      buttonRect.center.dx - menuRect.width / 2 + customOffset.dx,
+    );
+    expect(menuRect.top, buttonRect.bottom + customOffset.dy);
+  });
 }

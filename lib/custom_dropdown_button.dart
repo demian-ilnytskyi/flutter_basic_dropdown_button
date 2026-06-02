@@ -32,6 +32,8 @@ class CustomDropDownButton<T> extends StatelessWidget {
     this.menuItemsSpacing = 0,
     this.buttonIconSpace = 0,
     this.buttonChild,
+    this.menuHorizontalPadding = 8.0,
+    this.menuOffset = Offset.zero,
   })  : assert(
           !(buttonText == null && customButton == null && buttonChild == null),
           'Either provide a [buttonText] or a custom [customButton]'
@@ -91,6 +93,12 @@ class CustomDropDownButton<T> extends StatelessWidget {
   final double buttonIconSpace;
 
   final Widget? buttonChild;
+
+  /// Horizontal padding/boundary offset to keep menu within the screen width.
+  final double menuHorizontalPadding;
+
+  /// Custom offset to manually adjust the menu position from default.
+  final Offset menuOffset;
 
   /// Determines whether to show the indicator icon on the main button.
   final Widget Function({required bool showedMenu})? buttonIcon;
@@ -158,6 +166,8 @@ class CustomDropDownButton<T> extends StatelessWidget {
       menuKey: menuKey,
       menuItemsSpacing: menuItemsSpacing,
       buttonChild: buttonChild,
+      menuHorizontalPadding: menuHorizontalPadding,
+      menuOffset: menuOffset,
     );
   }
 }
