@@ -1,3 +1,12 @@
+## 1.3.0
+
+- Added horizontal auto-correction bounds to prevent dropdown menus from overflowing the left or right edges of the screen.
+- Added `menuHorizontalPadding` parameter to configure the screen boundary safety padding (defaults to `8.0`).
+- Added `menuOffset` parameter (`Offset`) to allow manual adjustment of the dropdown menu's location from its default position.
+- Added real-world use cases and demo section in the example application for manual offset and boundary shifting.
+- Re-verified 100% code coverage across the package with new widget tests.
+- Fixed all Flutter analysis warnings and formatting.
+
 ## 1.0.0
 
 Release Version

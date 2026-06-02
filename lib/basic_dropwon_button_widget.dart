@@ -17,6 +17,8 @@ class BasicDropDownButton extends StatefulWidget {
     required this.buttonIcon,
     required this.position,
     this.buttonIconSpace = 0,
+    this.menuHorizontalPadding = 8.0,
+    this.menuOffset = Offset.zero,
     Key? key,
     this.buttonIconColor = Colors.black,
     this.buttonIconFirst = true,
@@ -106,6 +108,12 @@ class BasicDropDownButton extends StatefulWidget {
 
   final double buttonIconSpace;
 
+  /// Horizontal padding/boundary offset to keep menu within the screen width.
+  final double menuHorizontalPadding;
+
+  /// Custom offset to manually adjust the menu position from default.
+  final Offset menuOffset;
+
   final void Function(
     ListenerParams Function() getParams,
   )? listener;
@@ -124,6 +132,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
   late OverlayPortalController _controller;
   late LayerLink _optionsLayerLink;
   late double? menuHeight;
+  late double? menuWidth;
   late GlobalKey _menuKey;
   late GlobalKey _anchorKey;
   double _keyboardSize = 0;
@@ -158,6 +167,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
 
     _showMenu = false;
     menuHeight = null;
+    menuWidth = null;
 
     _menuKey = GlobalKey(debugLabel: 'menu_key');
     _anchorKey = GlobalKey(debugLabel: 'button_key');
@@ -183,7 +193,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
     widget.onMenuChanged?.call(showMenu: _showMenu);
   }
 
-  /// Sets the height of the drop-down menu after it has been rendered.
+  /// Sets height and width of the drop-down menu after it has been rendered.
   void setMenuHeight() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final context = _menuKey.currentContext;
@@ -192,6 +202,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
         if (box.hasSize) {
           setState(() {
             menuHeight = box.size.height;
+            menuWidth = box.size.width;
           });
         }
       }
@@ -244,13 +255,55 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
   /// Builds the drop-down menu widget.
   Widget _getMenuWidget(BuildContext context) {
     final positionValue = _positionCalculate;
-    if (menuHeight == null) setMenuHeight();
+    if (menuHeight == null || menuWidth == null) setMenuHeight();
     final items = widget.menuItems?.call(showHideMenu);
+
+    var dx = 0.0;
+    if (menuWidth != null) {
+      final anchorContext = _anchorKey.currentContext;
+      if (anchorContext != null) {
+        final renderBox = anchorContext.findRenderObject()! as RenderBox;
+        final buttonPosition = renderBox.localToGlobal(Offset.zero);
+        final buttonWidth = getWidth;
+        final screenWidth = MediaQuery.sizeOf(context).width;
+
+        var menuX = 0.0;
+        switch (positionValue) {
+          case DropDownButtonPosition.bottomLeft:
+          case DropDownButtonPosition.topLeft:
+            menuX = buttonPosition.dx;
+            break;
+          case DropDownButtonPosition.bottomRight:
+          case DropDownButtonPosition.topRight:
+            menuX = buttonPosition.dx + buttonWidth - menuWidth!;
+            break;
+          case DropDownButtonPosition.bottomCenter:
+          case DropDownButtonPosition.topCenter:
+            menuX = buttonPosition.dx + (buttonWidth - menuWidth!) / 2;
+            break;
+        }
+
+        menuX += widget.menuOffset.dx;
+
+        final leftLimit = widget.menuHorizontalPadding;
+        final rightLimit = screenWidth - widget.menuHorizontalPadding;
+
+        if (menuWidth! <= (screenWidth - 2 * widget.menuHorizontalPadding)) {
+          if (menuX < leftLimit) {
+            dx = leftLimit - menuX;
+          } else if (menuX + menuWidth! > rightLimit) {
+            dx = rightLimit - (menuX + menuWidth!);
+          }
+        }
+      }
+    }
+
     final menu = CompositedTransformFollower(
       link: _optionsLayerLink,
       showWhenUnlinked: false,
       targetAnchor: positionValue.getMenuPosition,
       followerAnchor: positionValue.getContentPosition,
+      offset: Offset(widget.menuOffset.dx + dx, widget.menuOffset.dy),
       child: Align(
         alignment: positionValue.getContentPosition,
         child: Padding(
@@ -309,7 +362,7 @@ class _BasicDropDownButtonState extends State<BasicDropDownButton>
         ),
       ),
     );
-    if (menuHeight == null) {
+    if (menuHeight == null || menuWidth == null) {
       return Opacity(opacity: 0, child: menu);
     } else {
       return menu;

@@ -184,140 +184,205 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 20,
             ),
-            Wrap(
-              spacing: 20,
-              runSpacing: 20,
-              alignment: WrapAlignment.center,
-              children: [
-                // Style 1: Filled Background
-                _buildTextField(
-                  label: 'Filled Style',
-                  color: Colors.deepPurple,
-                  itemStyle: _itemButtonStyle4,
-                  position: DropDownButtonPosition.bottomCenter,
-                  filled: true,
-                  fillColor: Colors.deepPurple[50],
-                ),
-                // Style 2: Underline Border
-                _buildTextField(
-                  label: 'Underline Style',
-                  color: Colors.blue,
-                  itemStyle: _itemButtonStyle2,
-                  position: DropDownButtonPosition.bottomCenter,
-                  useUnderline: true,
-                ),
-                // Style 3: Custom Menu List
-                SizedBox(
-                  width: 250,
-                  child: AppDropDownTextField<String>(
-                    decoration: ({required showMenu}) => const InputDecoration(
-                      labelText: 'Custom Menu List',
-                      border: OutlineInputBorder(),
-                    ),
-                    menuList: ({required buttonWidth, required hideMenu}) {
-                      return Container(
-                        width: buttonWidth,
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[900],
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Text(
-                              'Custom Header',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Divider(color: Colors.white24),
-                            ...List.generate(
-                              3,
-                              (index) => ListTile(
-                                title: Text(
-                                  'Custom Item ${index + 1}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                onTap: hideMenu,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    itemText: (String value) {
-                      return value;
-                    },
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                // spacing: 40,
+                // runSpacing: 20,
+                // alignment: WrapAlignment.center,
+                children: [
+                  // Style 1: Filled Background
+                  _buildTextField(
+                    label: 'Filled Style',
+                    color: Colors.deepPurple,
+                    itemStyle: _itemButtonStyle4,
+                    position: DropDownButtonPosition.bottomCenter,
+                    filled: true,
+                    fillColor: Colors.deepPurple[50],
                   ),
-                ),
-                // Style 4: Custom Field Builder
-                SizedBox(
-                  width: 250,
-                  child: AppDropDownTextField<String>(
-                    customField: ({
-                      required showHideMenuEvent,
-                      required showMenu,
-                      required groupId,
-                      required focusNode,
-                      required controller,
-                      required contextMenuBuilder,
-                      required onTapOutside,
-                    }) {
-                      return InkWell(
-                        onTap: showHideMenuEvent,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 12,
-                          ),
+                  SizedBox(
+                    width: 80,
+                  ),
+                  // Style 2: Underline Border
+                  _buildTextField(
+                    label: 'Underline Style',
+                    color: Colors.blue,
+                    itemStyle: _itemButtonStyle2,
+                    position: DropDownButtonPosition.bottomCenter,
+                    useUnderline: true,
+                  ),
+                  SizedBox(
+                    width: 800,
+                  ),
+                  // Style 3: Custom Menu List
+                  SizedBox(
+                    width: 400,
+                    child: AppDropDownTextField<String>(
+                      decoration: ({required showMenu}) =>
+                          const InputDecoration(
+                        labelText: 'Custom Menu List',
+                        border: OutlineInputBorder(),
+                      ),
+                      menuList: ({required buttonWidth, required hideMenu}) {
+                        return Container(
+                          width: buttonWidth,
+                          padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: Colors.green[100],
-                            borderRadius: BorderRadius.circular(30),
-                            border: Border.all(color: Colors.green, width: 2),
+                            color: Colors.grey[900],
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Row(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Icon(Icons.search, color: Colors.green),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: IgnorePointer(
-                                  child: TextField(
-                                    controller: controller,
-                                    focusNode: focusNode,
-                                    decoration: const InputDecoration.collapsed(
-                                      hintText: 'Custom Field...',
+                              const Text(
+                                'Custom Header',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Divider(color: Colors.white24),
+                              ...List.generate(
+                                3,
+                                (index) => ListTile(
+                                  title: Text(
+                                    'Custom Item ${index + 1}',
+                                    style: const TextStyle(
+                                      color: Colors.white,
                                     ),
                                   ),
+                                  onTap: hideMenu,
                                 ),
-                              ),
-                              Icon(
-                                showMenu
-                                    ? Icons.expand_less
-                                    : Icons.expand_more,
-                                color: Colors.green,
                               ),
                             ],
                           ),
-                        ),
-                      );
-                    },
-                    menuItems: (hideMenu) => List.generate(
-                      3,
-                      (index) => ListTile(
-                        title: Text('Option ${index + 1}'),
-                        onTap: hideMenu,
-                      ),
+                        );
+                      },
+                      itemText: (String value) {
+                        return value;
+                      },
                     ),
-                    itemText: (String value) {
-                      return value;
-                    },
                   ),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  // Style 4: Custom Field Builder
+                  SizedBox(
+                    width: 250,
+                    child: AppDropDownTextField<String>(
+                      customField: ({
+                        required showHideMenuEvent,
+                        required showMenu,
+                        required groupId,
+                        required focusNode,
+                        required controller,
+                        required contextMenuBuilder,
+                        required onTapOutside,
+                      }) {
+                        return InkWell(
+                          onTap: showHideMenuEvent,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.green[100],
+                              borderRadius: BorderRadius.circular(30),
+                              border: Border.all(color: Colors.green, width: 2),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.search, color: Colors.green),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: IgnorePointer(
+                                    child: TextField(
+                                      controller: controller,
+                                      focusNode: focusNode,
+                                      decoration:
+                                          const InputDecoration.collapsed(
+                                        hintText: 'Custom Field...',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Icon(
+                                  showMenu
+                                      ? Icons.expand_less
+                                      : Icons.expand_more,
+                                  color: Colors.green,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      position: DropDownButtonPosition.topRight,
+                      menuItems: (hideMenu) => List.generate(
+                        3,
+                        (index) => ListTile(
+                          title: Text('Option ${index + 1}'),
+                          onTap: hideMenu,
+                        ),
+                      ),
+                      itemText: (String value) {
+                        return value;
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Text(
+              'Example With Custom Menu Offset & Screen Boundary Shifting\n(Real Use Cases)',
+              style: TextStyle(fontSize: 24),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Use case 1: Custom offset shifting the menu 20px horizontally and 10px vertically
+                    DropDownWidget(
+                      event: (index) => setState(() {
+                        currentIndex = index + 1;
+                      }),
+                      position: DropDownButtonPosition.bottomCenter,
+                      currentIndex: currentIndex,
+                      buttonStyle: _buttonStyle1,
+                      itemButtonStyle: _itemButtonStyle1,
+                      text: 'Offset (20, 10)',
+                      itemTextColor: Colors.black,
+                      itemCount: 3,
+                      menuOffset: const Offset(20, 10),
+                    ),
+                    const SizedBox(
+                      width: 60,
+                    ),
+                    // Use case 2: Narrow screen padding limit (32px from edges)
+                    DropDownWidget(
+                      event: (index) => setState(() {
+                        currentIndex = index + 1;
+                      }),
+                      position: DropDownButtonPosition.bottomLeft,
+                      currentIndex: currentIndex,
+                      buttonStyle: _buttonStyle3,
+                      itemButtonStyle: _itemButtonStyle3,
+                      text: 'Boundary Padding 32',
+                      itemTextColor: Colors.black,
+                      itemCount: 4,
+                      menuHorizontalPadding: 32.0,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
             const SizedBox(
               height: 100,
@@ -543,6 +608,8 @@ class DropDownWidget extends StatelessWidget {
     Key? key,
     this.buttonTextStyle,
     this.iconColor,
+    this.menuOffset = Offset.zero,
+    this.menuHorizontalPadding = 8.0,
   }) : super(key: key);
   final void Function(int) event;
   final int? currentIndex;
@@ -555,6 +622,8 @@ class DropDownWidget extends StatelessWidget {
   final Color? iconColor;
   final Color itemTextColor;
   final int itemCount;
+  final Offset menuOffset;
+  final double menuHorizontalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -588,6 +657,8 @@ class DropDownWidget extends StatelessWidget {
               Icons.arrow_drop_up,
               color: iconColor,
             ),
+      menuOffset: menuOffset,
+      menuHorizontalPadding: menuHorizontalPadding,
     );
   }
 }
